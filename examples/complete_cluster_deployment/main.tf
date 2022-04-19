@@ -121,14 +121,14 @@ module "iks_cluster" {
     #  # installStrategy  = "InstallOnly"
     #  releaseVersion = "0.2.61-helm3"
     #},
-    #{
+    {
        createNew       = false
        addonPolicyName = "kubedash"
        description     = "Kubernetes Dashboard"
     #  upgradeStrategy  = "AlwaysReinstall"
     #  installStrategy  = "InstallOnly"
     #  releaseVersion = "0.2.61-helm3"
-    #}
+    }
   ]
 
   # Worker Node Instance Type (To create new change "use_existing" to 'false' and uncomment variables and modify them to meet your needs.)
