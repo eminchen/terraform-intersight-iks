@@ -10,7 +10,7 @@ module "iks_cluster" {
 
   # Kubernetes Cluster Profile  Adjust the values as needed.
   cluster = {
-    name                = "test"
+    name                = "iks-cloud-b-tfcb"
     action              = "Unassign"
     wait_for_completion = false
     worker_nodes        = 3
