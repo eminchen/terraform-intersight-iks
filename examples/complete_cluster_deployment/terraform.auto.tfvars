@@ -13,6 +13,10 @@ tags = [
   {
     "key" : "Location"
     "value" : "Toronto"
+  },
+  {
+    "key" : "Source"
+    "value" : "terraform"
   }
 ]
 organization = "default" # Change this if a different org is required.  Default org is set to "default"
