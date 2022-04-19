@@ -3,7 +3,7 @@ terraform {
     hostname = "app.terraform.io"
     organization = "Toronto_DCLAB"
     workspaces {
-      name = "iwe-hyperflex"
+      name = "terraform-intersight-iks"
     }
   }
   required_providers {
