@@ -122,11 +122,11 @@ module "iks_cluster" {
     #  releaseVersion = "0.2.61-helm3"
     #},
     #{
-    #  createNew       = false
+       createNew       = false
        addonPolicyName = "kubedash"
        description     = "Kubernetes Dashboard"
-    #  # upgradeStrategy  = "AlwaysReinstall"
-    #  # installStrategy  = "InstallOnly"
+    #  upgradeStrategy  = "AlwaysReinstall"
+    #  installStrategy  = "InstallOnly"
     #  releaseVersion = "0.2.61-helm3"
     #}
   ]
