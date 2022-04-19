@@ -13,10 +13,10 @@ module "iks_cluster" {
     name                = "test"
     action              = "Unassign"
     wait_for_completion = false
-    worker_nodes        = 2
-    load_balancers      = 5
-    worker_max          = 20
-    control_nodes       = 1
+    worker_nodes        = 3
+    load_balancers      = 3
+    worker_max          = 10
+    control_nodes       = 3
     ssh_user            = var.ssh_user
     ssh_public_key      = var.ssh_key
   }
@@ -24,7 +24,7 @@ module "iks_cluster" {
   # IP Pool Information (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   ip_pool = {
     use_existing = true
-    name         = "marvel-prod"
+    name         = "ikspool"
     # ip_starting_address = "10.239.21.220"
     # ip_pool_size        = "20"
     # ip_netmask          = "255.255.255.0"
@@ -35,7 +35,7 @@ module "iks_cluster" {
   # Sysconfig Policy (UI Reference NODE OS Configuration) (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   sysconfig = {
     use_existing = true
-    name         = "richfield"
+    name         = "iks-cloud-sys-config-policy"
     # domain_name  = "rich.ciscolabs.com"
     # timezone     = "America/New_York"
     # ntp_servers  = ["10.101.128.15"]
@@ -45,7 +45,7 @@ module "iks_cluster" {
   # Kubernetes Network CIDR (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   k8s_network = {
     use_existing = true
-    name         = "default"
+    name         = "k8s-cluster1-network-policy"
     ######### Below are the default settings.  Change if needed. #########
     # pod_cidr     = "100.65.0.0/16"
     # service_cidr = "100.64.0.0/24"
@@ -55,8 +55,8 @@ module "iks_cluster" {
   # Version policy (To create new change "use_existing" to 'false' uncomment variables and modify them to meet your needs.)
   versionPolicy = {
     useExisting    = false
-    policyName     = "1.19.15.5-test"
-    iksVersionName = "1.19.15-iks.5"
+    policyName     = "1.21"
+    iksVersionName = "1.21.10-iks.0"
   }
 
   # Trusted Registry Policy (To create new change "use_existing" to 'false' and set "create_new' to 'true' uncomment variables and modify them to meet your needs.)
@@ -70,9 +70,9 @@ module "iks_cluster" {
   # Runtime Policy (To create new change "use_existing" to 'false' and set "create_new' to 'true' uncomment variables and modify them to meet your needs.)
   # Set both variables to 'false' if this policy is not needed.
   runtime_policy = {
-    use_existing = false
+    use_existing = true
     create_new   = false
-    # name                 = "runtime"
+    name                 = "k8s-cluster1-container-runtime-policy"
     # http_proxy_hostname  = "t"
     # http_proxy_port      = 80
     # http_proxy_protocol  = "http"
@@ -90,7 +90,7 @@ module "iks_cluster" {
     use_existing = true
     # platformType = "iwe"
     # targetName   = "falcon"
-    policyName = "marvel-prod"
+    policyName = "iks-vm-config"
     # description  = "Test Policy"
     # interfaces   = ["iwe-guests"]
     # vcTargetName   = optional(string)
@@ -103,30 +103,38 @@ module "iks_cluster" {
   # Addon Profile and Policies (To create new change "createNew" to 'true' and uncomment variables and modify them to meet your needs.)
   # This is an Optional item.  Comment or remove to not use.  Multiple addons can be configured.
   addons = [
-    {
-      createNew       = true
-      addonPolicyName = "smm-test-cluster"
-      addonName       = "smm"
-      description     = "SMM Policy"
-      upgradeStrategy = "AlwaysReinstall"
-      installStrategy = "InstallOnly"
-      releaseVersion  = "1.7.4-cisco4-helm3"
-      overrides       = yamlencode({ "demoApplication" : { "enabled" : true } })
-    },
-    {
-      createNew       = false
-      addonPolicyName = "ccp-monitor"
-      description     = "monitor Policy"
-      # upgradeStrategy  = "AlwaysReinstall"
-      # installStrategy  = "InstallOnly"
-      releaseVersion = "0.2.61-helm3"
-    }
+    #{
+    #  createNew       = true
+    #  addonPolicyName = "smm-test-cluster"
+    #  addonName       = "smm"
+    #  description     = "SMM Policy"
+    #  upgradeStrategy = "AlwaysReinstall"
+    #  installStrategy = "InstallOnly"
+    #  releaseVersion  = "1.7.4-cisco4-helm3"
+    #  overrides       = yamlencode({ "demoApplication" : { "enabled" : true } })
+    #},
+    #{
+    #  createNew       = false
+    #  addonPolicyName = "ccp-monitor"
+    #  description     = "monitor Policy"
+    #  # upgradeStrategy  = "AlwaysReinstall"
+    #  # installStrategy  = "InstallOnly"
+    #  releaseVersion = "0.2.61-helm3"
+    #},
+    #{
+    #  createNew       = false
+       addonPolicyName = "kubedash"
+       description     = "Kubernetes Dashboard"
+    #  # upgradeStrategy  = "AlwaysReinstall"
+    #  # installStrategy  = "InstallOnly"
+    #  releaseVersion = "0.2.61-helm3"
+    #}
   ]
 
   # Worker Node Instance Type (To create new change "use_existing" to 'false' and uncomment variables and modify them to meet your needs.)
   instance_type = {
     use_existing = true
-    name         = "small"
+    name         = "vm-type-iks"
     # cpu          = 4
     # memory       = 16386
     # disk_size    = 40
