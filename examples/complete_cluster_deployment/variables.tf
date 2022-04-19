@@ -1,8 +1,8 @@
-variable "apikey" {
+variable "intersight_key" {
   type        = string
   description = "API Key"
 }
-variable "secretkey" {
+variable "intersight_secret" {
   type        = string
   description = "Secret Key or file location"
 }
