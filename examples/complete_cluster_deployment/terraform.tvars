@@ -1,7 +1,7 @@
 # Required Varilables
 apikey = var.intersight_key
 secretkey = var.intersight_secret
-#vc_password  = ""
+vc_password  = ""
 ssh_user     = "iksadmin"
 #ssh_key      = ""
 # Optional Variables
