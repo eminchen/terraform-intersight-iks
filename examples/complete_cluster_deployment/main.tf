@@ -9,8 +9,6 @@ data "intersight_organization_organization" "organization_moid" {
 } 
 
 resource "data_source_intersight_kubernetes_cluster_profile" "deployaction" {
-  source  = "terraform-cisco-modules/iks/intersight//"
-  version = "2.1.3"
 
   # Kubernetes Cluster Profile  Adjust the values as needed.
   cluster = {
