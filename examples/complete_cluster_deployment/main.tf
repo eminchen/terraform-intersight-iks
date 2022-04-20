@@ -11,10 +11,8 @@ data "intersight_organization_organization" "organization_moid" {
 resource "intersight_kubernetes_cluster_profile" "deployaction" {
 
   # Kubernetes Cluster Profile  Adjust the values as needed.
-  cluster = {
-    name                = "iks-cloud-b-tfcb"
-    action              = "Deploy"
-  }
+  name                = "iks-cloud-b-tfcb"
+  action              = "Deploy"
   
   depends_on = [module.iks_cluster]
   
