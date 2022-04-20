@@ -4,7 +4,11 @@ provider "intersight" {
   endpoint  = var.endpoint
 }
 
-resource "data_source_intersight_kubernetes_cluster_profile" "iks-cloud-b-tfcb" {
+data "intersight_organization_organization" "organization_moid" {
+  name = var.organization
+} 
+
+resource "data_source_intersight_kubernetes_cluster_profile" "deployaction" {
   source  = "terraform-cisco-modules/iks/intersight//"
   version = "2.1.3"
 
@@ -14,7 +18,12 @@ resource "data_source_intersight_kubernetes_cluster_profile" "iks-cloud-b-tfcb" 
     action              = "Deploy"
   }
   
- depends_on = [module.iks_cluster]
+  depends_on = [module.iks_cluster]
+  
+  organization {
+    object_type = "organization.Organization"
+    moid        = data.intersight_organization_organization.organization_moid.results.0.moid
+  } 
 }
 
 module "iks_cluster" {
