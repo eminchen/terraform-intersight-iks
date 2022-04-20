@@ -8,7 +8,7 @@ data "intersight_organization_organization" "organization_moid" {
   name = var.organization
 } 
 
-resource "data_source_intersight_kubernetes_cluster_profile" "deployaction" {
+resource "intersight_kubernetes_cluster_profile" "deployaction" {
 
   # Kubernetes Cluster Profile  Adjust the values as needed.
   cluster = {
