@@ -4,6 +4,19 @@ provider "intersight" {
   endpoint  = var.endpoint
 }
 
+resource "data_source_intersight_kubernetes_cluster_profile" "iks-cloud-b-tfcb" {
+  source  = "terraform-cisco-modules/iks/intersight//"
+  version = "2.1.3"
+
+  # Kubernetes Cluster Profile  Adjust the values as needed.
+  cluster = {
+    name                = "iks-cloud-b-tfcb"
+    action              = "Deploy"
+  }
+  
+ depends_on = [module.iks_cluster]
+}
+
 module "iks_cluster" {
   source  = "terraform-cisco-modules/iks/intersight//"
   version = "2.1.3"
