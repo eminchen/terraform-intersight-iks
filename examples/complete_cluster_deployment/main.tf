@@ -110,8 +110,8 @@ module "iks_cluster" {
     platformType = "iwe"
     targetName   = "TF-HX-IWE"
     policyName = "iks-vm-config"
-    # description  = "Test Policy"
-    # interfaces   = ["iwe-guests"]
+    description  = "VM infra policy created by TF"
+    interfaces   = ["iwe-guests"]
     # vcTargetName   = optional(string)
     # vcClusterName      = optional(string)
     # vcDatastoreName     = optional(string)
