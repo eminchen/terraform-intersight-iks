@@ -7,5 +7,5 @@ data "intersight_kubernetes_cluster" "deployedcluster" {
 }
   
 output "k8s_cluster_kubeconfig" {
-  value = data.intersight_kubernetes_cluster.deployedcluster.results.0.kube_config
+  value = base64decode(data.intersight_kubernetes_cluster.deployedcluster.results.0.kube_config)
 } 
