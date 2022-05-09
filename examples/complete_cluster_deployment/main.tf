@@ -106,9 +106,9 @@ module "iks_cluster" {
 
   # Infrastructure Configuration Policy (To create new change "use_existing" to 'false' and uncomment variables and modify them to meet your needs.)
   infraConfigPolicy = {
-    use_existing = true
-    # platformType = "iwe"
-    # targetName   = "falcon"
+    use_existing = false
+    platformType = "iwe"
+    targetName   = "TF-HX-IWE"
     policyName = "iks-vm-config"
     # description  = "Test Policy"
     # interfaces   = ["iwe-guests"]
