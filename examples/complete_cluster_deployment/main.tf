@@ -111,7 +111,7 @@ module "iks_cluster" {
     targetName   = "TF-HX-IWE"
     policyName = "iks-vm-config"
     description  = "VM infra policy created by TF"
-    interfaces   = ["IWE-VM-NET-10"]
+    interfaces   = ["iwe-vm-net-10"]
     # vcTargetName   = optional(string)
     # vcClusterName      = optional(string)
     # vcDatastoreName     = optional(string)
