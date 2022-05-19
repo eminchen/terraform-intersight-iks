@@ -12,7 +12,7 @@ resource "intersight_kubernetes_cluster_profile" "deployaction" {
 
   # Kubernetes Cluster Profile  Adjust the values as needed.
   name                = "iks-cloud-b-tfcb"
-  action              = "Deploy"
+  action              = "No-Op"
   
   depends_on = [module.iks_cluster]
   
